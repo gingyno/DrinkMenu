@@ -8,11 +8,14 @@ namespace Drinks.App_Data_Classes
     {
         public void DisplayDrinkDetails(SingularDrink drink)
         {
+            Console.WriteLine();
             Console.WriteLine($"Name: {drink.StrDrink}");
+            Console.WriteLine();
             Console.WriteLine($"Category: {drink.StrCategory}");
             Console.WriteLine($"Alcoholic: {drink.StrAlcoholic}");
             Console.WriteLine($"Glass: {drink.StrGlass}");
             Console.WriteLine($"Instructions: {drink.StrInstructions}");
+            Console.WriteLine();
             Console.WriteLine("Ingredients:");
             for (int i = 1; i <= 15; i++)
             {
@@ -23,6 +26,7 @@ namespace Drinks.App_Data_Classes
                     Console.WriteLine($"{measure} {ingredient}");
                 }
             }
+            Console.WriteLine();
         }
     }
 }

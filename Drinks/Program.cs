@@ -6,7 +6,7 @@ using System.Text;
 
 
 Console.WriteLine("Welcome to the Drink Finder!");
-Console.WriteLine("Enter the name of a drink to search for: ");
+Console.Write("Enter the name of a drink to search for: ");
 string drinkName = Console.ReadLine() ?? string.Empty;
 
 ApiService apiService = new ApiService();
@@ -18,7 +18,7 @@ if(drinkObj != null && drinkObj.Drinks != null && drinkObj.Drinks.Count > 0)
     foreach (var drink in drinkObj.Drinks)
     {
         displayService.DisplayDrinkDetails(drink);
-        Console.WriteLine(new string('-', 40)); // Separator between drinks
+        Console.WriteLine(new string('=', 40)); // Separator between drinks
     }
 }
 else
