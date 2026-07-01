@@ -6,22 +6,28 @@ using System.Text;
 
 
 Console.WriteLine("Welcome to the Drink Finder!");
-Console.Write("Enter the name of a drink to search for: ");
-string drinkName = Console.ReadLine() ?? string.Empty;
 
-ApiService apiService = new ApiService();
-DrinksWrapper? drinkObj = await apiService.GetDrinksByNameAsync(drinkName);
-
-if(drinkObj != null && drinkObj.Drinks != null && drinkObj.Drinks.Count > 0)
+string loopInput = string.Empty;
+do
 {
-    DisplayService displayService = new DisplayService();
-    foreach (var drink in drinkObj.Drinks)
+    Console.Write("Enter the name of a drink to search for: ");
+    string drinkName = Console.ReadLine() ?? string.Empty;
+    ApiService apiService = new ApiService();
+    DrinksWrapper? drinkObj = await apiService.GetDrinksByNameAsync(drinkName);
+    if (drinkObj != null && drinkObj.Drinks != null && drinkObj.Drinks.Count > 0)
     {
-        displayService.DisplayDrinkDetails(drink);
-        Console.WriteLine(new string('=', 40)); // Separator between drinks
+        DisplayService displayService = new DisplayService();
+        foreach (var drink in drinkObj.Drinks)
+        {
+            displayService.DisplayDrinkDetails(drink);
+            Console.WriteLine(new string('=', 40)); // Separator between drinks
+        }
     }
+    else
+    {
+        Console.WriteLine("No drinks found with that name.");
+    }
+    Console.Write("Do you want to search for another drink? (yes/no): ");
+    loopInput = Console.ReadLine()?.Trim().ToLower() ?? string.Empty;
 }
-else
-{
-    Console.WriteLine("No drinks found with that name.");
-}
+while (loopInput == "yes" || loopInput == "y");
