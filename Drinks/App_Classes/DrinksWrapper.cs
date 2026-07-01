@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Drinks
+namespace Drinks.App_Classes
 {
     internal class DrinksWrapper
     {
