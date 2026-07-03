@@ -20,7 +20,7 @@ do
         foreach (var drink in drinkObj.Drinks)
         {
             displayService.DisplayDrinkDetails(drink);
-            Console.WriteLine(new string('=', 40)); // Separator between drinks
+            Console.WriteLine(new string('=', 40));
         }
     }
     else
