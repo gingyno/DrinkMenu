@@ -7,16 +7,23 @@ using System.Text;
 
 Console.WriteLine("Welcome to the Drink Finder!");
 
+ApiService apiService = new ApiService();
+DisplayService displayService = new DisplayService();
 string loopInput = string.Empty;
+
 do
 {
     Console.Write("Enter the name of a drink to search for: ");
     string drinkName = Console.ReadLine() ?? string.Empty;
-    ApiService apiService = new ApiService();
+    if(string.IsNullOrWhiteSpace(drinkName))
+    {
+        Console.WriteLine("Please enter a valid drink name.");
+        continue;
+    }
+    
     DrinksWrapper? drinkObj = await apiService.GetDrinksByNameAsync(drinkName);
     if (drinkObj != null && drinkObj.Drinks != null && drinkObj.Drinks.Count > 0)
     {
-        DisplayService displayService = new DisplayService();
         foreach (var drink in drinkObj.Drinks)
         {
             displayService.DisplayDrinkDetails(drink);
@@ -31,3 +38,5 @@ do
     loopInput = Console.ReadLine()?.Trim().ToLower() ?? string.Empty;
 }
 while (loopInput == "yes" || loopInput == "y");
+
+Console.WriteLine("Thank you for using the Drink Finder! Goodbye!");
