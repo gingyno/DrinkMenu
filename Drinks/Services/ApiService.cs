@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Net.Http.Json;
 using System.Text;
 
-namespace Drinks
+namespace Drinks.Services
 {
     internal class ApiService
     {

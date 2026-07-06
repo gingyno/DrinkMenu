@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Drinks.App_Data_Classes;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Drinks.App_Data_Classes
+namespace Drinks.Services
 {
     internal class DisplayService
     {
