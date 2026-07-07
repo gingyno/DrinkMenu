@@ -39,5 +39,35 @@ namespace Drinks.Services
                 return null;
             }
         }
+        public async Task<CategoryWrapper?> GetAllCategories()
+        {
+            try
+            {
+                var response = await client.GetAsync("https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list");
+                response.EnsureSuccessStatusCode();
+                var categoryWrapper = await response.Content.ReadFromJsonAsync<CategoryWrapper>();
+                return categoryWrapper;
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"Error fetching categories: {ex.Message}");
+                return null;
+            }
+        }
+        public async Task<DrinksWrapper?> GetDrinksByCategoryAsync(string category)
+        {
+            try
+            {
+                var response = await client.GetAsync($"https://www.thecocktaildb.com/api/json/v1/1/filter.php?c={Uri.EscapeDataString(category)}");
+                response.EnsureSuccessStatusCode();
+                var drinksWrapper = await response.Content.ReadFromJsonAsync<DrinksWrapper>();
+                return drinksWrapper;
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"Error fetching drinks by category: {ex.Message}");
+                return null;
+            }
+        }
     }
 }
