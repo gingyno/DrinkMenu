@@ -29,6 +29,7 @@ do
         {
             displayService.DisplayDrinkDetails(drink);
             Console.WriteLine(new string('=', 40));
+            Console.WriteLine();
         }
     }
     else
@@ -40,4 +41,7 @@ do
 }
 while (loopInput == "yes" || loopInput == "y");
 
-Console.WriteLine("Thank you for using the Drink Finder! Goodbye!");
+Console.WriteLine();
+Console.WriteLine();
+AnsiConsole.Write(new Text("Thank you for using the Drink Finder! Goodbye!", 
+                  new Style(Color.Yellow)).Centered());
