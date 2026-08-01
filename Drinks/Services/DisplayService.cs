@@ -47,5 +47,23 @@ namespace Drinks.Services
             Console.WriteLine();
             Console.WriteLine();
         }
+        public void DisplayCategories(CategoryWrapper categoryWrapper)
+        {
+            var table = new Table()
+                            .RoundedBorder()
+                            .BorderColor(Color.GreenYellow);
+            table.AddColumn("Categories");
+            if(categoryWrapper?.Categories != null)
+            {
+                foreach (var category in categoryWrapper.Categories)
+                {
+                    if (!string.IsNullOrEmpty(category.StrCategory))
+                    {
+                        table.AddRow(category.StrCategory ?? string.Empty);
+                    }
+                }
+            }
+            AnsiConsole.Write(table);
+        }
     }
 }

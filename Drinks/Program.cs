@@ -12,7 +12,28 @@ ApiService apiService = new ApiService();
 DisplayService displayService = new DisplayService();
 string loopInput = string.Empty;
 
-do
+
+// Pilot code to display all categories
+CategoryWrapper? categoryWrapper = await apiService.GetAllCategories();
+if (categoryWrapper?.Categories != null)
+{
+    int i = 1;
+    foreach (var category in categoryWrapper.Categories)
+    {
+        if (category.StrCategory != null)
+        {
+            Console.WriteLine($"{i}. {category.StrCategory}");
+        }
+        i++;
+    }
+}
+/*do
+{
+    Console.Write("Do you want to search for another drink? (yes/no): ");
+    loopInput = Console.ReadLine()?.Trim().ToLower() ?? string.Empty;
+}
+while (loopInput == "yes" || loopInput == "y");
+/*do
 {
     Console.Write("Enter the name of a drink to search for: ");
     string drinkName = Console.ReadLine() ?? string.Empty;
@@ -39,7 +60,7 @@ do
     Console.Write("Do you want to search for another drink? (yes/no): ");
     loopInput = Console.ReadLine()?.Trim().ToLower() ?? string.Empty;
 }
-while (loopInput == "yes" || loopInput == "y");
+while (loopInput == "yes" || loopInput == "y");*/
 
 Console.WriteLine();
 Console.WriteLine();
