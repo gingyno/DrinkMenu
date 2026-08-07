@@ -15,7 +15,7 @@ string loopInput = string.Empty;
 
 // Pilot code to display all categories
 CategoryWrapper? categoryObj = await apiService.GetAllCategories();
-if (categoryObj != null && categoryObj.Categories != null)
+if (categoryObj != null && categoryObj.Drinks != null)
 {
     displayService.DisplayCategories(categoryObj);
     Console.WriteLine();

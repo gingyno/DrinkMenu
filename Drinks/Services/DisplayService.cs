@@ -53,9 +53,9 @@ namespace Drinks.Services
                             .RoundedBorder()
                             .BorderColor(Color.GreenYellow);
             table.AddColumn("Categories");
-            if(categoryWrapper?.Categories != null)
+            if(categoryWrapper?.Drinks != null)
             {
-                foreach (var category in categoryWrapper.Categories)
+                foreach (var category in categoryWrapper.Drinks)
                 {
                     if (!string.IsNullOrEmpty(category.StrCategory))
                     {

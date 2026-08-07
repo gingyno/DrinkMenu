@@ -6,6 +6,6 @@ namespace Drinks.App_Data_Classes
 {
     internal class CategoryWrapper
     {
-        public List<Category>? Categories { get; set; }
+        public List<Category>? Drinks { get; set; }
     }
 }
