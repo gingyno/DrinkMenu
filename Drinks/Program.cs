@@ -14,26 +14,14 @@ string loopInput = string.Empty;
 
 
 // Pilot code to display all categories
-CategoryWrapper? categoryWrapper = await apiService.GetAllCategories();
-if (categoryWrapper?.Categories != null)
+CategoryWrapper? categoryObj = await apiService.GetAllCategories();
+if (categoryObj != null && categoryObj.Categories != null)
 {
-    int i = 1;
-    foreach (var category in categoryWrapper.Categories)
-    {
-        if (category.StrCategory != null)
-        {
-            Console.WriteLine($"{i}. {category.StrCategory}");
-        }
-        i++;
-    }
+    displayService.DisplayCategories(categoryObj);
+    Console.WriteLine();
 }
-/*do
-{
-    Console.Write("Do you want to search for another drink? (yes/no): ");
-    loopInput = Console.ReadLine()?.Trim().ToLower() ?? string.Empty;
-}
-while (loopInput == "yes" || loopInput == "y");
-/*do
+/*
+do
 {
     Console.Write("Enter the name of a drink to search for: ");
     string drinkName = Console.ReadLine() ?? string.Empty;
