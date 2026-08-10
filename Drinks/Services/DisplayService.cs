@@ -8,50 +8,12 @@ namespace Drinks.Services
 {
     internal class DisplayService
     {
-        public void DisplayDrinkDetails(SingularDrink drink)
-        {
-            var table1 = new Table()
-                            .RoundedBorder()
-                            .BorderColor(Color.DeepPink1);
-            table1.AddColumn("Name");
-            table1.AddColumn("Category");
-            table1.AddColumn("Alcoholic");
-            table1.AddColumn("Glass");
-            table1.AddRow(drink.StrDrink ?? string.Empty, 
-                        drink.StrCategory ?? string.Empty, 
-                        drink.StrAlcoholic ?? string.Empty, 
-                        drink.StrGlass ?? string.Empty);
-            AnsiConsole.Write(table1);
-            Console.WriteLine();
-
-            var table2 = new Table()
-                            .RoundedBorder()
-                            .BorderColor(Color.BlueViolet);
-
-            table2.AddColumn("Measures");
-            table2.AddColumn("Ingredients");
-            
-            for (int i = 1; i <= 15; i++)
-            {
-                var ingredient = (string?)drink.GetType().GetProperty($"StrIngredient{i}")?.GetValue(drink);
-                var measure = (string?)drink.GetType().GetProperty($"StrMeasure{i}")?.GetValue(drink);
-                if (!string.IsNullOrEmpty(ingredient))
-                {
-                    table2.AddRow(measure ?? string.Empty, ingredient);
-                }
-            }
-            AnsiConsole.Write(table2);
-            Console.WriteLine();
-            AnsiConsole.Write(new Text("Instructions: ", new Style(decoration: Decoration.Bold)));
-            Console.Write(drink.StrInstructions);
-            Console.WriteLine();
-            Console.WriteLine();
-        }
         public void DisplayCategories(CategoryWrapper categoryWrapper)
         {
             var table = new Table()
                             .RoundedBorder()
                             .BorderColor(Color.GreenYellow);
+            int i = 1;
             table.AddColumn("Categories");
             if(categoryWrapper?.Drinks != null)
             {
@@ -59,8 +21,29 @@ namespace Drinks.Services
                 {
                     if (!string.IsNullOrEmpty(category.StrCategory))
                     {
-                        table.AddRow(category.StrCategory ?? string.Empty);
+                        table.AddRow(i + ". " + category.StrCategory ?? string.Empty);
                     }
+                    i++;
+                }
+            }
+            AnsiConsole.Write(table);
+        }
+        public void DisplayDrinksAccordingToCategory(string category, DrinksWrapper? drinksWrapper)
+        {
+            var table = new Table()
+                            .RoundedBorder()
+                            .BorderColor(Color.Orange1);
+            int i = 1;
+            table.AddColumn($"Drinks from {category}");
+            if (drinksWrapper?.Drinks != null)
+            {
+                foreach (var drink in drinksWrapper.Drinks)
+                {
+                    if (!string.IsNullOrEmpty(drink.StrDrink) && drink.StrCategory == category)
+                    {
+                        drinksWrapper.DisplayDrinkDetails(drink);
+                    }
+                    i++;
                 }
             }
             AnsiConsole.Write(table);

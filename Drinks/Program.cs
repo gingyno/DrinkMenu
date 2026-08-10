@@ -12,6 +12,9 @@ ApiService apiService = new ApiService();
 DisplayService displayService = new DisplayService();
 string loopInput = string.Empty;
 
+Console.WriteLine("Would you like to choose from categories or by " +
+    "drink name? Enter 'C' for categories or 'D' for drink name: ");
+string choice = Console.ReadLine()?.Trim().ToLower() ?? string.Empty;
 
 // Pilot code to display all categories
 CategoryWrapper? categoryObj = await apiService.GetAllCategories();
@@ -20,6 +23,11 @@ if (categoryObj != null && categoryObj.Drinks != null)
     displayService.DisplayCategories(categoryObj);
     Console.WriteLine();
 }
+Console.WriteLine("Choose a category by typing the category name exactly as it appears above: ");
+string categoryName = Console.ReadLine() ?? string.Empty;
+
+DrinksWrapper? drinksWrapper = await apiService.GetDrinksByCategoryAsync(categoryName);
+displayService.DisplayDrinksAccordingToCategory(categoryName, drinksWrapper);
 /*
 do
 {
@@ -36,7 +44,7 @@ do
     {
         foreach (var drink in drinkObj.Drinks)
         {
-            displayService.DisplayDrinkDetails(drink);
+            drinkObj.DisplayDrinkDetails(drink);
             Console.WriteLine(new string('=', 40));
             Console.WriteLine();
         }
