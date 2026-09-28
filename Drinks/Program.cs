@@ -27,7 +27,7 @@ Console.WriteLine("Choose a category by typing the category name exactly as it a
 string categoryName = Console.ReadLine() ?? string.Empty;
 
 DrinksWrapper? drinksWrapper = await apiService.GetDrinksByCategoryAsync(categoryName);
-displayService.DisplayDrinksAccordingToCategory(categoryName, drinksWrapper);
+await displayService.DisplayDrinksAccordingToCategory(categoryName, drinksWrapper);
 /*
 do
 {

@@ -3,11 +3,13 @@ using Spectre.Console;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Drinks.Services;
 
 namespace Drinks.Services
 {
     internal class DisplayService
     {
+        ApiService apiService = new ApiService();
         public void DisplayCategories(CategoryWrapper categoryWrapper)
         {
             var table = new Table()
@@ -28,25 +30,26 @@ namespace Drinks.Services
             }
             AnsiConsole.Write(table);
         }
-        public void DisplayDrinksAccordingToCategory(string category, DrinksWrapper? drinksWrapper)
+        public async Task DisplayDrinksAccordingToCategory(string? category, DrinksWrapper? drinksWrapper)
         {
-            var table = new Table()
-                            .RoundedBorder()
-                            .BorderColor(Color.Orange1);
-            int i = 1;
-            table.AddColumn($"Drinks from {category}");
-            if (drinksWrapper?.Drinks != null)
+            if (drinksWrapper?.Drinks == null || drinksWrapper.Drinks.Count == 0)
             {
-                foreach (var drink in drinksWrapper.Drinks)
+                AnsiConsole.MarkupLine($"[red]No drinks found for category '{category}'.[/]");
+                return;
+            }
+
+            AnsiConsole.MarkupLine($"Drinks from {category}");
+            foreach (var drink in drinksWrapper.Drinks)
+            {
+                if (!string.IsNullOrEmpty(drink.IdDrink))
                 {
-                    if (!string.IsNullOrEmpty(drink.StrDrink) && drink.StrCategory == category)
+                    SingularDrink? drinkReal = await apiService.GetDrinkByIdAsync(drink.IdDrink);
+                    if (drinkReal != null)
                     {
-                        drinksWrapper.DisplayDrinkDetails(drink);
+                        drinksWrapper.DisplayDrinkDetails(drinkReal);
                     }
-                    i++;
                 }
             }
-            AnsiConsole.Write(table);
         }
     }
 }
