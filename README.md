@@ -10,10 +10,11 @@ I created this project in order to learn, how data is grabbed from API's and how
 4. After the making the choice the user will either be prompted with a category list or be asked to enter a name
    <img width="771" height="68" alt="image" src="https://github.com/user-attachments/assets/56aebd90-9a1e-42b4-85a7-007eed11ec66" />
 
-   * After typing in 'D' for search by drink name *
+   *After typing in 'D' for search by drink name*
   
   <img width="761" height="290" alt="image" src="https://github.com/user-attachments/assets/13a7ca68-e13f-4fd7-8c79-9f6795a5fb79" />
-   * After typing in 'C' for category search *
+   
+   *After typing in 'C' for category search*
    
 6. The process can be repeated or terminated with a Y/N question:
    <img width="909" height="574" alt="image" src="https://github.com/user-attachments/assets/2f9fa320-8634-49cd-8374-83413154fd1a" />
