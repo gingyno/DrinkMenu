@@ -30,4 +30,4 @@ I am creating this project in order to learn, how data is grabbed from API's and
    
    *After typing in 'yes' for search by drink name*
    
-**This project is still being updated, so it is not finished! :))**
+**This project is still being updated, so it is not finished and for now does not have razor pages! :))**
