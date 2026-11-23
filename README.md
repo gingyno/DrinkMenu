@@ -1,5 +1,5 @@
 # DrinkMenu
-I created this project in order to learn, how data is grabbed from API's and how it is done in code, additionally, I wanted to learn Razor pages and their syntax. For a more interesting terminal I used [Spectre Console](https://spectreconsole.net/) to add color and tables.
+I am creating this project in order to learn, how data is grabbed from API's and how it is done in code, additionally, I wanted to learn Razor pages and their syntax. For a more interesting terminal I used [Spectre Console](https://spectreconsole.net/) to add color and tables.
 
 ### How the project functions for now:
 1. Run without debugging in Visual Studio or your IDE of your choice
