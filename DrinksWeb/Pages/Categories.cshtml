@@ -1,0 +1,23 @@
+﻿@page
+@model DrinkWeb.Pages.CategoriesModel
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<h1>Categories</h1>
+
+@if (Model.ErrorMessage != null)
+{
+    <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+else
+{
+    <ul class="list-group">
+        @foreach (var category in Model.Categories)
+        {
+            <li class="list-group-item">
+                <a asp-page="/Drinks" asp-route-category="@category.StrCategory">@category.StrCategory</a>
+            </li>
+        }
+    </ul>
+}

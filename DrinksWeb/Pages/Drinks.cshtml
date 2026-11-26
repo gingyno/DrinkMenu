@@ -1,0 +1,40 @@
+﻿@page "{id}"
+@model DrinkWeb.Pages.DetailsModel
+@{
+    ViewData["Title"] = Model.Drink?.StrDrink ?? "Drink not found";
+}
+
+@if (Model.Drink == null)
+{
+    <div class="alert alert-warning">Drink not found.</div>
+}
+else
+{
+    <h1>@Model.Drink.StrDrink</h1>
+    <p class="text-muted">
+        @Model.Drink.StrCategory · @Model.Drink.StrAlcoholic · @Model.Drink.StrGlass
+    </p>
+
+    <img src="@Model.Drink.StrDrinkThumb" alt="@Model.Drink.StrDrink" class="img-thumbnail mb-3" style="max-width: 300px;" />
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Measure</th>
+                <th>Ingredient</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Drink.GetIngredients())
+            {
+                <tr>
+                    <td>@item.Measure</td>
+                    <td>@item.Ingredient</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h2>Instructions</h2>
+    <p>@Model.Drink.StrInstructions</p>
+}
