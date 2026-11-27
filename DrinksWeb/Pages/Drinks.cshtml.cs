@@ -1,5 +1,6 @@
 using DrinkWeb.Models;
 using DrinkWeb.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace DrinkWeb.Pages
@@ -9,6 +10,9 @@ namespace DrinkWeb.Pages
         private readonly ApiService _apiService;
 
         public SingularDrink? Drink { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string? Category { get; set; }
 
         public DetailsModel(ApiService apiService)
         {
